@@ -1,0 +1,83 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinha conteúdo à esquerda */
+  padding: 100px 5%; /* Padding-top para compensar o header fixo */
+  color: var(--color-white);
+  overflow: hidden; /* Garante que o vídeo não vaze */
+}
+
+.videoBackground {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cobre toda a área, cortando se necessário */
+  transform: translate(-50%, -50%);
+  z-index: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 25, 60, 0.6); /* Overlay Azul Escuro Transparente */
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 700px; /* Limita a largura do texto */
+  animation: fadeIn 1s ease-in-out;
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-size: 52px; /* Tamanho grande e impactante */
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 24px;
+}
+
+.subheadline {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 300; /* Fonte leve para um visual sofisticado */
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 600px;
+}
+
+.heroButton {
+  display: inline-block;
+  background-color: var(--color-white);
+  color: var(--color-primary-blue);
+  padding: 16px 32px;
+  border-radius: 5px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.heroButton:hover {
+  background-color: var(--color-border-light); /* Leve mudança no hover */
+  transform: translateY(-2px); /* Efeito sutil de "levantar" */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
