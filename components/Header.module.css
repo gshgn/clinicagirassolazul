@@ -57,3 +57,19 @@
 .ctaButton:hover {
   opacity: 0.9;
 }
+
+/* Regras para Telas Pequenas (Tablets e Celulares) */
+@media (max-width: 768px) {
+  .nav {
+    display: none; /* Esconde o menu de navegação principal */
+  }
+
+  .logo {
+    font-size: 20px; /* Diminui um pouco o logo */
+  }
+
+  .ctaButton {
+    padding: 8px 14px; /* Diminui o botão de agendamento */
+    font-size: 14px;
+  }
+}

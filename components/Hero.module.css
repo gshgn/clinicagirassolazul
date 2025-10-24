@@ -81,3 +81,32 @@
     transform: translateY(0);
   }
 }
+
+/* Regras para Telas Pequenas (Tablets e Celulares) */
+@media (max-width: 768px) {
+  .hero {
+    /* Garante que o padding não seja excessivo e centraliza */
+    padding-top: 120px; 
+    padding-bottom: 60px;
+    justify-content: center;
+    text-align: center; /* Centraliza todo o texto no celular */
+  }
+
+  .heroContent {
+    max-width: 100%; /* Permite o conteúdo usar a tela toda */
+  }
+
+  .headline {
+    font-size: 36px; /* Tamanho do título drasticamente menor */
+    line-height: 1.3;
+  }
+
+  .subheadline {
+    font-size: 16px; /* Tamanho do subtítulo menor */
+  }
+
+  .heroButton {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+}
