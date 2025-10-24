@@ -1,50 +1,28 @@
-/* Em seu pages/_app.tsx, importe as fontes:
-import { Playfair_Display, Montserrat } from 'next/font/google';
+import Head from 'next/head';
+import Header from '@/components/Header';
+import Hero from '@/components/Hero';
+// Importe as outras seções aqui quando as criarmos
+// import About from '@/components/About';
+// import Services from '@/components/Services';
 
-export const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-playfair',
-});
-
-export const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-});
-
-// E no seu _app.tsx, no componente principal:
-// <main className={`${playfair.variable} ${montserrat.variable}`}>
-//   <Component {...pageProps} />
-// </main>
-*/
-
-/* E então, em styles/globals.css */
-:root {
-  /* Cores */
-  --color-primary-blue: #0D2B4F;  /* Azul Petróleo Escuro */
-  --color-accent-gold: #FFB800;   /* Dourado/Mostarda "Girassol" */
-  --color-text-dark: #333333;
-  --color-text-light: #FAFAFA;
-  --color-white: #FFFFFF;
-  --color-border-light: #EAEAEA;
-
-  /* Fontes */
-  --font-serif: var(--font-playfair), Georgia, serif;
-  --font-sans: var(--font-montserrat), Arial, sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  font-family: var(--font-sans);
-  color: var(--color-text-dark);
-  background-color: var(--color-white);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+export default function HomePage() {
+  return (
+    <>
+      <Head>
+        <title>Girassol Azul Clínica Multiprofissional | Excelência em Saúde</title>
+        <meta name="description" content="Abordagens de ponta para neurodiversidade (TEA, TDAH) e bem-estar integral." />
+      </Head>
+      
+      <Header />
+      
+      <main>
+        <Hero />
+        {/* As próximas seções entrarão aqui */}
+        {/* <About /> */}
+        {/* <Services /> */}
+      </main>
+      
+      {/* O Footer entrará aqui */}
+    </>
+  );
 }
