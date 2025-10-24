@@ -14,7 +14,7 @@
 
 .container {
   width: 100%;
-  max-width: 1300px; /* Mais largo para um layout premium */
+  max-width: 1300px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,29 +24,29 @@
   font-family: var(--font-serif);
   font-size: 24px;
   font-weight: 700;
-  color: var(--color-primary-blue);
+  color: var(--color-primary-blue); /* ATUALIZADO AUTOMATICAMENTE */
 }
 
 .nav ul {
   list-style: none;
   display: flex;
-  gap: 32px; /* Mais espaço */
+  gap: 32px;
 }
 
 .nav a {
   font-size: 16px;
   font-weight: 500;
-  color: var(--color-text-dark);
+  color: var(--color-primary-blue); /* <-- MUDANÇA APLICADA AQUI */
   transition: color 0.2s ease-in-out;
 }
 
 .nav a:hover {
-  color: var(--color-primary-blue);
+  opacity: 0.7; /* Mudei para opacidade para um hover mais suave */
 }
 
 .ctaButton {
   background-color: var(--color-accent-gold);
-  color: var(--color-primary-blue); /* Texto escuro para legibilidade */
+  color: var(--color-primary-blue); /* ATUALIZADO AUTOMATICAMENTE */
   padding: 12px 24px;
   border-radius: 5px;
   font-weight: 700;
@@ -61,15 +61,15 @@
 /* Regras para Telas Pequenas (Tablets e Celulares) */
 @media (max-width: 768px) {
   .nav {
-    display: none; /* Esconde o menu de navegação principal */
+    display: none;
   }
 
   .logo {
-    font-size: 20px; /* Diminui um pouco o logo */
+    font-size: 20px;
   }
 
   .ctaButton {
-    padding: 8px 14px; /* Diminui o botão de agendamento */
+    padding: 8px 14px;
     font-size: 14px;
   }
 }

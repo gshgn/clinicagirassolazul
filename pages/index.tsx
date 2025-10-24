@@ -9,8 +9,9 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Girassol Azul Clínica Multiprofissional | Excelência em Saúde</title>
+        <title>Girassol Azul Clínica Multiprofissional | Excelência Acolhimento e em Saúde</title>
         <meta name="description" content="Abordagens de ponta para neurodiversidade (TEA, TDAH) e bem-estar integral." />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
       <Header />
