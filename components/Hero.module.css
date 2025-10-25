@@ -7,28 +7,9 @@
   justify-content: flex-start; /* Alinha conteúdo à esquerda */
   padding: 100px 5%; /* Padding-top para compensar o header fixo */
   color: var(--color-white);
-  overflow: hidden; /* Garante que o vídeo não vaze */
-}
-
-.videoBackground {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Cobre toda a área, cortando se necessário */
-  transform: translate(-50%, -50%);
-  z-index: 0;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(10, 25, 60, 0.6); /* Overlay Azul Escuro Transparente */
-  z-index: 1;
+  overflow: hidden;
+  /* ESTA É A CORREÇÃO: */
+  background-color: var(--color-primary-blue);
 }
 
 .heroContent {
@@ -67,8 +48,8 @@
 }
 
 .heroButton:hover {
-  background-color: var(--color-border-light); /* Leve mudança no hover */
-  transform: translateY(-2px); /* Efeito sutil de "levantar" */
+  background-color: var(--color-border-light);
+  transform: translateY(-2px);
 }
 
 @keyframes fadeIn {
@@ -85,24 +66,23 @@
 /* Regras para Telas Pequenas (Tablets e Celulares) */
 @media (max-width: 768px) {
   .hero {
-    /* Garante que o padding não seja excessivo e centraliza */
     padding-top: 120px; 
     padding-bottom: 60px;
     justify-content: center;
-    text-align: center; /* Centraliza todo o texto no celular */
+    text-align: center;
   }
 
   .heroContent {
-    max-width: 100%; /* Permite o conteúdo usar a tela toda */
+    max-width: 100%;
   }
 
   .headline {
-    font-size: 36px; /* Tamanho do título drasticamente menor */
+    font-size: 36px;
     line-height: 1.3;
   }
 
   .subheadline {
-    font-size: 16px; /* Tamanho do subtítulo menor */
+    font-size: 16px;
   }
 
   .heroButton {
