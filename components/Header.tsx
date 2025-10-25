@@ -6,21 +6,24 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          Girassol Azul
+          {/* MUDANÇA 1: Texto do Logo */}
+          CLÍNICA GIRASSOL AZUL
         </Link>
         
         <nav className={styles.nav}>
+          {/* MUDANÇA 2: Itens de Navegação */}
           <ul>
-            <li><Link href="/sobre-nos">Sobre Nós</Link></li>
-            <li><Link href="/servicos">Serviços</Link></li>
-            <li><Link href="/equipe">Equipe</Link></li>
-            <li><Link href="/artigos">Artigos</Link></li>
-            <li><Link href="/contato">Contato</Link></li>
+            <li><Link href="/sobre-nos">SOBRE NÓS</Link></li>
+            <li><Link href="/servicos">SERVIÇOS</Link></li>
+            <li><Link href="/equipe">EQUIPE</Link></li>
+            <li><Link href="/artigos">NOTÍCIAS</Link></li>
+            {/* O link "Contato" foi removido daqui */}
           </ul>
         </nav>
         
         <Link href="/agendamento" className={styles.ctaButton}>
-          Agende uma Consulta
+          {/* MUDANÇA 3: Texto do Botão */}
+          Agende uma consulta
         </Link>
       </div>
     </header>
