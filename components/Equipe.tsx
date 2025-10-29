@@ -25,7 +25,7 @@ const professionals = [
   {
     name: 'Patrícia Menchaca',
     title: 'NEUROPSICÓLOGA | CRP 07/28824 (RS)',
-    bio: 'Especialista em Neuropsicologia pelo Conselho Regional de Psicologia (CRP). Pós-graduada em Terapia Cognitivo Comportamental (TCC). Pós-graduada em Psicologia do Esporte e do Exercício. Pós-graduada em Psicologia Hospitalar. Pós-graduada em Transtorno do Espectro do Autismo TEA. Pós-graduanda em ABA (Análise do Comportamento Aplicada). Pós-graduanda em Neurociências.',
+    bio: 'Especialista em Neuropsicologia pelo Conselho Regional de Psicologia (CRP). Pós-graduada em Terapia Cognitivo Comportamental (TCC). Pós-graduada em Psicologia do Esporte e do Exercício. Pós-graduada em Psicologia Hospitalar. Pós-graduada em Transtorno do Espectro do Autismo (TEA). Pós-graduanda em ABA (Análise do Comportamento Aplicada). Pós-graduanda em Neurociências.',
     imageUrl: '/images/equipe-placeholder-4.jpg',
   },
   {
