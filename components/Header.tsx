@@ -13,8 +13,8 @@ export default function Header() {
         <nav className={styles.nav}>
           {/* MUDANÇA 2: Itens de Navegação */}
           <ul>
-            <li><Link href="/sobre-nos">SOBRE NÓS</Link></li>
-            <li><Link href="/servicos">SERVIÇOS</Link></li>
+            <li><Link href="/#sobre-nos">SOBRE NÓS</Link></li>
+            <li><Link href="/#equipe">EQUIPE</Link></li>
             <li><Link href="/equipe">EQUIPE</Link></li>
             <li><Link href="/artigos">NOTÍCIAS</Link></li>
             {/* O link "Contato" foi removido daqui */}

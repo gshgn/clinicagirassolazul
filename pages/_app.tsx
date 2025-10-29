@@ -1,28 +1,29 @@
 import type { AppProps } from 'next/app';
-import { Analytics } from '@vercel/analytics/react'; // 1. Importa o Analytics
-import { Playfair_Display, Montserrat } from 'next/font/google'; // 2. Importa as fontes
-import '@/styles/globals.css'; // 3. Importa seu CSS global
+import { Analytics } from '@vercel/analytics/react';
+// MUDANÇA 1: Importamos 'Lora' em vez de 'Playfair_Display'
+import { Lora, Montserrat } from 'next/font/google';
+import '@/styles/globals.css';
 
-// 4. Configura as fontes (como planejado no globals.css)
-const playfair = Playfair_Display({
+// MUDANÇA 2: Configuramos a 'Lora'
+const lora = Lora({
   subsets: ['latin'],
-  variable: '--font-playfair',
-  weight: ['400', '700'], // Incluímos os pesos que usaremos
+  variable: '--font-lora', // Novo nome da variável
+  weight: ['400', '700'], // Pesos para Título e Logo
 });
 
+// A Montserrat continua igual
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
-  weight: ['300', '400', '500', '700'], // Incluímos os pesos que usaremos
+  weight: ['300', '400', '500', '700'],
 });
 
-// 5. Este é o seu componente "App" principal
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // 6. Aplica as classes das fontes globalmente
-    <main className={`${playfair.variable} ${montserrat.variable}`}>
+    // MUDANÇA 3: Aplicamos a variável '--font-lora'
+    <main className={`${lora.variable} ${montserrat.variable}`}>
       <Component {...pageProps} />
-      <Analytics /> {/* 7. Adiciona o componente do Analytics aqui */}
+      <Analytics />
     </main>
   );
 }

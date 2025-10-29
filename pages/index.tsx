@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
+import About from '@/components/About';
+import Equipe from '@/components/Equipe';
 // Importe as outras seções aqui quando as criarmos
 // import About from '@/components/About';
 // import Services from '@/components/Services';
@@ -18,9 +20,9 @@ export default function HomePage() {
       
       <main>
         <Hero />
-        {/* As próximas seções entrarão aqui */}
-        {/* <About /> */}
-        {/* <Services /> */}
+        <About />
+        <Equipe /> {/* <-- SEÇÃO ADICIONADA */}
+        {/* <Servicos /> */}
       </main>
       
       {/* O Footer entrará aqui */}
