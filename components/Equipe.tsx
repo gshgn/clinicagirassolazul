@@ -4,6 +4,8 @@ import styles from './Equipe.module.css';
 
 // 1. NOSSOS DADOS ATUALIZADOS (E HIGIENIZADOS)
 const professionals = [
+  // (Seu array de 'professionals' está aqui, eu o omiti para 
+  // encurtar a resposta, mas ele permanece idêntico ao da Ação 63)
   {
     name: 'Luciana Baldino Lages',
     title: 'MÉDICA | CRM-RS 20.146',
@@ -55,8 +57,8 @@ export default function Equipe() {
               <Image
                 src={professional.imageUrl}
                 alt={`Retrato de ${professional.name}`}
-                width={300}  /* Tamanho 300x300 */
-                height={300} /* Tamanho 300x300 */
+                width={600}  /* MUDANÇA AQUI: O tamanho real do arquivo de origem */
+                height={600} /* MUDANÇA AQUI: O tamanho real do arquivo de origem */
                 className={styles.profileImage}
               />
             </div>
