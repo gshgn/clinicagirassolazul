@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useRef } from 'react';
+import { useRef, useState } from 'react'; // 1. Importe o useState
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
@@ -13,24 +13,21 @@ export default function HomePage() {
   const siteUrl = "https://www.clinicagirassolazul.com.br";
   const siteImage = "https://www.clinicagirassolazul.com.br/images/social-share.jpg";
 
-  // 1. DUAS REFERÊNCIAS
-  const aboutVideoRef = useRef<HTMLVideoElement>(null); // Para dar PLAY
-  const aboutContainerRef = useRef<HTMLDivElement>(null); // Para ROLAR ATÉ ELE
+  // 2. Crie o "estado" para saber qual seção está ativa
+  const [activeSection, setActiveSection] = useState('');
 
-  // 2. A FUNÇÃO DE CLIQUE ATUALIZADA
+  // --- (As Refs do vídeo permanecem as mesmas) ---
+  const aboutVideoRef = useRef<HTMLVideoElement>(null);
+  const aboutContainerRef = useRef<HTMLDivElement>(null);
+
   const handleHeroCtaClick = (event: React.MouseEvent) => {
-    // 3. Impedimos o HTML de rolar sozinho
     event.preventDefault(); 
-
-    // 4. Forçamos a rolagem manual para o container do vídeo
     if (aboutContainerRef.current) {
       aboutContainerRef.current.scrollIntoView({
-        behavior: 'smooth', // Rolagem suave
-        block: 'center',     // MÁGICA: Centraliza verticalmente
+        behavior: 'smooth',
+        block: 'center',
       });
     }
-
-    // 5. Damos play no vídeo (como antes)
     if (aboutVideoRef.current) {
       aboutVideoRef.current.muted = false;
       aboutVideoRef.current.currentTime = 0;
@@ -58,18 +55,23 @@ export default function HomePage() {
         <meta name="twitter:image" content={siteImage} />
       </Head>
       
-      <Header />
+      {/* 3. Passe o estado ATIVO para o Header */}
+      <Header activeSection={activeSection} />
       
       <main>
-        <Hero onCtaClick={handleHeroCtaClick} />
-        
-        {/* 6. Passamos AMBAS as referências para o componente */}
+        {/* 4. Passe a função SETTER para todas as seções */}
+        <Hero 
+          onCtaClick={handleHeroCtaClick} 
+          setActiveSection={setActiveSection} 
+        />
         <About 
           videoRef={aboutVideoRef} 
           containerRef={aboutContainerRef} 
+          setActiveSection={setActiveSection}
         />
-        
-        <Equipe />
+        <Equipe 
+          setActiveSection={setActiveSection}
+        />
       </main>
       
       {/* O Footer entrará aqui */}

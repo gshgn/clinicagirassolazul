@@ -1,31 +1,45 @@
 import React from 'react';
 import styles from './About.module.css';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
-// O tipo aceita as DUAS refs (para rolagem e para play)
 type AboutProps = {
   videoRef: React.Ref<HTMLVideoElement>;
   containerRef: React.Ref<HTMLDivElement>;
+  setActiveSection: (id: string) => void;
 }
 
-export default function About({ videoRef, containerRef }: AboutProps) {
+export default function About({ videoRef, containerRef, setActiveSection }: AboutProps) {
+  // MUDANÇA: Limiar recalibrado para 10%
+  const { ref, inView } = useInView({ threshold: 0.1 });
 
-  // A função de "Play/Pause" por clique que implementamos
+  useEffect(() => {
+    if (inView) {
+      setActiveSection('sobre-nos');
+    }
+  }, [inView, setActiveSection]);
+
   const handleVideoClick = () => {
+    // ... (função de clique do vídeo permanece idêntica) ...
     if (videoRef && 'current' in videoRef && videoRef.current) {
-      if (videoRef.current.paused) {
+      if (videoRef.current.muted) {
+        videoRef.current.muted = false;
+        videoRef.current.currentTime = 0;
         videoRef.current.play();
       } else {
-        videoRef.current.pause();
+        if (videoRef.current.paused) {
+          videoRef.current.play();
+        } else {
+          videoRef.current.pause();
+        }
       }
     }
   };
 
   return (
-    <section id="sobre-nos" className={styles.aboutSection}>
+    <section id="sobre-nos" ref={ref} className={styles.aboutSection}>
       <div className={styles.textContent}>
         <h2 className={styles.sectionTitle}>SOBRE NÓS</h2>
-        
-        {/* --- SEU NOVO TEXTO (LIMPO E EM PARÁGRAFO ÚNICO) --- */}
         <p className={styles.sectionText}>
           A Clínica Girassol Azul nasceu do desejo da excelência dedicada ao 
           cuidado humano. Excelência através da combinação de profissionais capacitados, 
@@ -36,9 +50,7 @@ export default function About({ videoRef, containerRef }: AboutProps) {
           oferecemos aconselhamento jurídico para garantir seus tratamentos recomendados. 
           Cuidado além do diagnóstico, focando na sua singularidade.
         </p>
-        {/* --- FIM DO NOVO TEXTO --- */}
       </div>
-      
       <div ref={containerRef} className={styles.videoContainer}>
         <video
           ref={videoRef}
@@ -49,7 +61,8 @@ export default function About({ videoRef, containerRef }: AboutProps) {
           muted
           playsInline
           poster="/images/video-fallback.jpg"
-          onClick={handleVideoClick} // A função de clique permanece
+          onClick={handleVideoClick}
+          loading="lazy"
         />
       </div>
     </section>

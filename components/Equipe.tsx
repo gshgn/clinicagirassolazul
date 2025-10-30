@@ -1,8 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 import styles from './Equipe.module.css';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
-// 1. NOSSOS DADOS ATUALIZADOS (E HIGIENIZADOS)
+// (O seu array 'professionals' permanece aqui, idêntico ao da Ação 72)
 const professionals = [
   {
     name: 'Luciana Baldino Lages',
@@ -42,12 +44,23 @@ const professionals = [
   },
 ];
 
-// O restante do arquivo é idêntico e não precisa ser modificado
-export default function Equipe() {
-  return (
-    <section id="equipe" className={styles.equipeSection}>
-      <h2 className={styles.sectionTitle}>EQUIPE</h2>
+type EquipeProps = {
+  setActiveSection: (id: string) => void;
+}
 
+export default function Equipe({ setActiveSection }: EquipeProps) {
+  // MUDANÇA: Limiar recalibrado para 10%
+  const { ref, inView } = useInView({ threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection('equipe');
+    }
+  }, [inView, setActiveSection]);
+
+  return (
+    <section id="equipe" ref={ref} className={styles.equipeSection}>
+      <h2 className={styles.sectionTitle}>EQUIPE</h2>
       <div className={styles.teamContainer}>
         {professionals.map((professional, index) => (
           <div key={index} className={styles.professionalBlock}>
@@ -55,8 +68,8 @@ export default function Equipe() {
               <Image
                 src={professional.imageUrl}
                 alt={`Retrato de ${professional.name}`}
-                width={600}  /* Tamanho de origem (600x600) */
-                height={600} /* Tamanho de origem (600x600) */
+                width={600}
+                height={600}
                 className={styles.profileImage}
               />
             </div>

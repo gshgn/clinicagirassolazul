@@ -1,14 +1,25 @@
 import Link from 'next/link';
 import styles from './Hero.module.css';
+import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
 
-// 1. MUDANÇA: O tipo agora aceita um "MouseEvent"
 type HeroProps = {
   onCtaClick: (event: React.MouseEvent) => void;
+  setActiveSection: (id: string) => void;
 }
 
-export default function Hero({ onCtaClick }: HeroProps) {
+export default function Hero({ onCtaClick, setActiveSection }: HeroProps) {
+  // MUDANÇA: Limiar recalibrado para 10%
+  const { ref, inView } = useInView({ threshold: 0.1 });
+
+  useEffect(() => {
+    if (inView) {
+      setActiveSection('inicio'); 
+    }
+  }, [inView, setActiveSection]);
+
   return (
-    <section className={styles.hero}>
+    <section id="inicio" ref={ref} className={styles.hero}>
       <div className={styles.heroContent}>
         <h1 className={styles.headline}>
           Excelência em cuidado multiprofissional. Foco na sua singularidade.
@@ -16,11 +27,10 @@ export default function Hero({ onCtaClick }: HeroProps) {
         <p className={styles.subheadline}>
           Acolhimento e atendimento para neurodivergentes (TEA, TDAH, etc) e bem-estar integral alinhados à saúde de precisão.
         </p>
-        
         <Link 
-          href="/#sobre-nos" // O href ainda é bom como fallback
+          href="/#sobre-nos"
           className={styles.heroButton}
-          onClick={onCtaClick} // 2. MUDANÇA: A função agora passa o evento (e)
+          onClick={onCtaClick}
         >
           Conheça a Clínica Girassol Azul
         </Link>

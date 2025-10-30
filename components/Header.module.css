@@ -26,28 +26,25 @@
   align-items: center;
   gap: 12px;
   font-family: var(--font-serif);
-  font-size: 24px; /* Tamanho do Desktop */
+  font-size: 24px;
   font-weight: 700;
   color: var(--color-primary-blue);
   z-index: 1002;
   transition: opacity 0.2s ease-in-out;
   min-width: 0; 
 }
-
 .logoContainer:hover {
   opacity: 0.8;
   cursor: pointer;
 }
-
 .logoIcon {
   width: 32px;
   height: 32px;
-  flex-shrink: 0; /* Impede o ícone de encolher */
+  flex-shrink: 0;
 }
 .logoText {
   /* (Nada aqui no desktop) */
 }
-
 
 /* Nav de Desktop */
 .nav ul {
@@ -55,7 +52,11 @@
   display: flex;
   gap: 32px;
 }
+.nav li {
+  /* (Não precisamos de nada aqui) */
+}
 .nav a {
+  position: relative; /* CRUCIAL: A linha será posicionada relativa ao link */
   font-size: 16px;
   font-weight: 500;
   color: var(--color-primary-blue);
@@ -64,6 +65,30 @@
 .nav a:hover {
   opacity: 0.7;
 }
+
+/* --- A LINHA HORIZONTAL (AÇÃO 128) --- */
+/* Esta regra se aplica ao LINK (<a>) DENTRO do LI (<li>) que tem a classe .active */
+.nav li.active a::after {
+  content: '';
+  position: absolute;
+  
+  /* Posição: 8px abaixo do texto */
+  bottom: -8px; 
+  left: 0;
+  
+  /* Largura: 100% do <a> (que é a largura exata do texto) */
+  width: 100%; 
+
+  /* Grossura: 3px (como solicitado, 3 é mais elegante que 4) */
+  height: 3px; 
+  
+  /* Cor: A sua cor índigo "premium" */
+  background-color: var(--color-primary-blue); 
+}
+/* -------------------------------------- */
+
+
+/* CTA de Desktop */
 .ctaButton {
   background-color: var(--color-accent-gold);
   color: var(--color-primary-blue);
@@ -88,7 +113,7 @@
   z-index: 1002;
   padding: 0;
 }
-/* ... (regras do hambúrguer e painel móvel permanecem idênticas) ... */
+/* ... (o restante do arquivo .css é idêntico ao da Ação 106) ... */
 .hamburgerLines {
   position: relative;
   width: 30px;
@@ -178,41 +203,31 @@
   font-weight: 700;
 }
 
-
-/* --- AS REGRAS DE MÍDIA (O "Interruptor") --- */
-
 @media (max-width: 768px) {
-  /* 1. Esconde as coisas do Desktop */
   .nav,
   .ctaButton {
     display: none;
   }
-
-  /* 2. Mostra as coisas do Mobile */
   .hamburgerButton,
   .mobileNavPanel {
     display: block;
   }
-  
-  /* --- ESTA É A NOVA CORREÇÃO (AÇÃO 106) --- */
-  
-  /* 3. Ajusta o Logo para o Mobile */
   .logoContainer {
-    /* Tentativa 2: Um font-size ligeiramente maior */
     font-size: 20px; 
-    gap: 8px; /* Espaço menor entre ícone e texto */
+    gap: 8px;
   }
-
   .logoIcon {
-    /* MANTÉM o ícone no tamanho que você gostou */
     width: 32px;
     height: 32px;
   }
-  
   .logoText {
-    white-space: nowrap; /* A MÁGICA: Impede a quebra de linha */
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  /* --- FIM DA CORREÇÃO --- */
+  
+  /* Esconde a linha azul no mobile (opcional, mas recomendado) */
+  .nav li.active a::after {
+    display: none;
+  }
 }
