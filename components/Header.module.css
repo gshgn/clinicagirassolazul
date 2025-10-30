@@ -1,3 +1,4 @@
+/* --- ESTILOS DE BASE (Desktop) --- */
 .header {
   width: 100%;
   background-color: var(--color-white);
@@ -20,56 +21,198 @@
   align-items: center;
 }
 
-.logo {
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 24px; /* Tamanho do Desktop */
   font-weight: 700;
-  color: var(--color-primary-blue); /* ATUALIZADO AUTOMATICAMENTE */
+  color: var(--color-primary-blue);
+  z-index: 1002;
+  transition: opacity 0.2s ease-in-out;
+  min-width: 0; 
 }
 
+.logoContainer:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0; /* Impede o ícone de encolher */
+}
+.logoText {
+  /* (Nada aqui no desktop) */
+}
+
+
+/* Nav de Desktop */
 .nav ul {
   list-style: none;
   display: flex;
   gap: 32px;
 }
-
 .nav a {
   font-size: 16px;
   font-weight: 500;
-  color: var(--color-primary-blue); /* <-- MUDANÇA APLICADA AQUI */
+  color: var(--color-primary-blue);
   transition: color 0.2s ease-in-out;
 }
-
 .nav a:hover {
-  opacity: 0.7; /* Mudei para opacidade para um hover mais suave */
+  opacity: 0.7;
 }
-
 .ctaButton {
   background-color: var(--color-accent-gold);
-  color: var(--color-primary-blue); /* ATUALIZADO AUTOMATICAMENTE */
+  color: var(--color-primary-blue);
   padding: 12px 24px;
   border-radius: 5px;
   font-weight: 700;
   font-size: 15px;
   transition: opacity 0.2s ease-in-out;
 }
-
 .ctaButton:hover {
   opacity: 0.9;
 }
 
-/* Regras para Telas Pequenas (Tablets e Celulares) */
+/* --- MOBILE --- */
+.hamburgerButton {
+  display: none;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1002;
+  padding: 0;
+}
+/* ... (regras do hambúrguer e painel móvel permanecem idênticas) ... */
+.hamburgerLines {
+  position: relative;
+  width: 30px;
+  height: 3px;
+  background-color: var(--color-primary-blue);
+  transition: all 0.3s ease;
+}
+.hamburgerLines::before,
+.hamburgerLines::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 3px;
+  background-color: var(--color-primary-blue);
+  transition: all 0.3s ease;
+}
+.hamburgerLines::before {
+  transform: translateY(-10px);
+}
+.hamburgerLines::after {
+  transform: translateY(10px);
+}
+.hamburgerButton.open .hamburgerLines {
+  background-color: transparent;
+}
+.hamburgerButton.open .hamburgerLines::before {
+  background-color: var(--color-white);
+  transform: rotate(45deg);
+}
+.hamburgerButton.open .hamburgerLines::after {
+  background-color: var(--color-white);
+  transform: rotate(-45deg);
+}
+.mobileNavPanel {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-primary-blue);
+  z-index: 1001;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+.mobileNavPanel.open {
+  transform: translateX(0);
+}
+.mobileNavLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 120px;
+  align-items: center;
+  gap: 40px;
+}
+.mobileNavLinks li {
+  width: 80%;
+  max-width: 300px;
+  text-align: center;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+}
+.mobileNavLinks li:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.mobileNavLinks a {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-white);
+}
+.mobileCtaButton {
+  background-color: var(--color-accent-gold);
+  color: var(--color-primary-blue) !important;
+  padding: 14px 28px;
+  border-radius: 5px;
+  font-family: var(--font-sans) !important;
+  font-size: 18px !important;
+  font-weight: 700;
+}
+
+
+/* --- AS REGRAS DE MÍDIA (O "Interruptor") --- */
+
 @media (max-width: 768px) {
-  .nav {
+  /* 1. Esconde as coisas do Desktop */
+  .nav,
+  .ctaButton {
     display: none;
   }
 
-  .logo {
-    font-size: 20px;
+  /* 2. Mostra as coisas do Mobile */
+  .hamburgerButton,
+  .mobileNavPanel {
+    display: block;
+  }
+  
+  /* --- ESTA É A NOVA CORREÇÃO (AÇÃO 106) --- */
+  
+  /* 3. Ajusta o Logo para o Mobile */
+  .logoContainer {
+    /* Tentativa 2: Um font-size ligeiramente maior */
+    font-size: 20px; 
+    gap: 8px; /* Espaço menor entre ícone e texto */
   }
 
-  .ctaButton {
-    padding: 8px 14px;
-    font-size: 14px;
+  .logoIcon {
+    /* MANTÉM o ícone no tamanho que você gostou */
+    width: 32px;
+    height: 32px;
   }
+  
+  .logoText {
+    white-space: nowrap; /* A MÁGICA: Impede a quebra de linha */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* --- FIM DA CORREÇÃO --- */
 }

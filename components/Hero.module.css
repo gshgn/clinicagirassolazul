@@ -8,7 +8,7 @@
   padding: 100px 5%; /* Padding-top para compensar o header fixo */
   color: var(--color-white);
   overflow: hidden;
-  /* ESTA É A CORREÇÃO: */
+  /* Esta é a cor de fundo correta */
   background-color: var(--color-primary-blue);
 }
 
