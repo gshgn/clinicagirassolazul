@@ -34,7 +34,7 @@ export default function About({ videoRef, containerRef }: AboutProps) {
           Também sabemos que suporte integral, como as terapias recomendadas para Autismo, 
           muitas vezes enfrentam empecilhos dos serviços de saúde e planos, portanto também 
           oferecemos aconselhamento jurídico para garantir seus tratamentos recomendados. 
-          Cuidado que enxerga além do diagnóstico, focando na sua singularidade.
+          Cuidado além do diagnóstico, focando na sua singularidade.
         </p>
         {/* --- FIM DO NOVO TEXTO --- */}
       </div>
