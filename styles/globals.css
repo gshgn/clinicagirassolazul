@@ -1,19 +1,17 @@
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; 
+  scroll-padding-top: 80px; /* MUDANÇA: De 100px para 80px */ 
+  /* (80px é uma folga segura para o seu header de ~64px) */
 }
 
 :root {
-  /* Cores */
+  /* ... (o restante do arquivo permanece idêntico) ... */
   --color-primary-blue: #07066e;
   --color-accent-gold: #FFB800;
   --color-text-dark: #333333;
   --color-text-light: #FAFAFA;
   --color-white: #FFFFFF;
   --color-border-light: #EAEAEA;
-
-  /* Fontes */
-  /* MUDANÇA ÚNICA: Usamos a nova variável --font-lora */
   --font-serif: var(--font-lora), Georgia, serif;
   --font-sans: var(--font-montserrat), Arial, sans-serif;
 }

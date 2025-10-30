@@ -1,7 +1,6 @@
 .aboutSection {
   width: 100%;
-  padding: 80px 5%;
-  /* Removemos o background-color: white; agora ele herda o azul */
+  padding: 48px 5%; /* MUDANÇA: De 80px para 48px */
   text-align: center;
 }
 
@@ -9,12 +8,13 @@
   max-width: 800px;
   margin: 0 auto 48px auto;
 }
+/* ... (o restante do arquivo permanece idêntico) ... */
 
 .sectionTitle {
   font-family: var(--font-serif);
   font-size: 42px;
   font-weight: 700;
-  color: var(--color-white); /* MUDANÇA: De azul para branco */
+  color: var(--color-white);
   margin-bottom: 24px;
 }
 
@@ -23,8 +23,7 @@
   font-size: 18px;
   font-weight: 300;
   line-height: 1.7;
-  color: var(--color-text-light); /* MUDANÇA: De escuro para claro */
-  margin-bottom: 16px;
+  color: var(--color-text-light);
 }
 
 .videoContainer {
@@ -32,8 +31,7 @@
   margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
-  background-color: #000; /* Fundo preto para o vídeo */
-  /* Removemos a sombra, que é inútil em um fundo escuro */
+  background-color: #000;
 }
 
 .video {
@@ -42,7 +40,6 @@
   display: block;
 }
 
-/* Responsividade (nenhuma mudança aqui) */
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 32px;

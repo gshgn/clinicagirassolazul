@@ -1,35 +1,56 @@
 import Head from 'next/head';
+import { useRef } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Equipe from '@/components/Equipe';
-// Importe as outras seções aqui quando as criarmos
-// import Services from '@/components/Services';
+// ...
 
 export default function HomePage() {
-  // --- Suas variáveis de SEO atualizadas ---
+  // --- (Suas variáveis de SEO permanecem as mesmas) ---
   const siteTitle = "Clínica Girassol Azul | Excelência em Saúde";
   const siteDescription = "Acolhimento e atendimento para neurodivergentes (TEA, TDAH, etc) e bem-estar integral alinhados à saúde de precisão.";
   const siteUrl = "https://www.clinicagirassolazul.com.br";
-  const siteImage = "https://www.clinicagirassolazul.com.br/images/social-share.jpg"; // (Mude se o nome for diferente)
+  const siteImage = "https://www.clinicagirassolazul.com.br/images/social-share.jpg";
+
+  // 1. DUAS REFERÊNCIAS
+  const aboutVideoRef = useRef<HTMLVideoElement>(null); // Para dar PLAY
+  const aboutContainerRef = useRef<HTMLDivElement>(null); // Para ROLAR ATÉ ELE
+
+  // 2. A FUNÇÃO DE CLIQUE ATUALIZADA
+  const handleHeroCtaClick = (event: React.MouseEvent) => {
+    // 3. Impedimos o HTML de rolar sozinho
+    event.preventDefault(); 
+
+    // 4. Forçamos a rolagem manual para o container do vídeo
+    if (aboutContainerRef.current) {
+      aboutContainerRef.current.scrollIntoView({
+        behavior: 'smooth', // Rolagem suave
+        block: 'center',     // MÁGICA: Centraliza verticalmente
+      });
+    }
+
+    // 5. Damos play no vídeo (como antes)
+    if (aboutVideoRef.current) {
+      aboutVideoRef.current.muted = false;
+      aboutVideoRef.current.currentTime = 0;
+      aboutVideoRef.current.play();
+    }
+  };
 
   return (
     <>
       <Head>
-        {/* --- Tags Padrão (Corrigidas) --- */}
+        {/* ... (Todas as suas meta tags permanecem iguais) ... */}
         <title>{siteTitle}</title>
         <meta name="description" content={siteDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" /> {/* (Precisaremos criar um favicon depois) */}
-
-        {/* --- Tags Open Graph (Para WhatsApp, Facebook, LinkedIn) --- */}
+        <link rel="icon" href="/favicon.ico" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={siteUrl} />
         <meta property="og:title" content={siteTitle} />
         <meta property="og:description" content={siteDescription} />
         <meta property="og:image" content={siteImage} />
-
-        {/* --- Tags Twitter Card (Para o Twitter) --- */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={siteUrl} />
         <meta name="twitter:title" content={siteTitle} />
@@ -40,10 +61,15 @@ export default function HomePage() {
       <Header />
       
       <main>
-        <Hero />
-        <About />
+        <Hero onCtaClick={handleHeroCtaClick} />
+        
+        {/* 6. Passamos AMBAS as referências para o componente */}
+        <About 
+          videoRef={aboutVideoRef} 
+          containerRef={aboutContainerRef} 
+        />
+        
         <Equipe />
-        {/* As próximas seções entrarão aqui */}
       </main>
       
       {/* O Footer entrará aqui */}
