@@ -10,8 +10,7 @@ type AboutProps = {
 }
 
 export default function About({ videoRef, containerRef, setActiveSection }: AboutProps) {
-  // MUDANÇA: Limiar recalibrado para 10%
-  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { ref, inView } = useInView({ threshold: 0.1 }); // Usando o threshold correto de 10%
 
   useEffect(() => {
     if (inView) {
@@ -62,7 +61,7 @@ export default function About({ videoRef, containerRef, setActiveSection }: Abou
           playsInline
           poster="/images/video-fallback.jpg"
           onClick={handleVideoClick}
-          loading="lazy"
+          /* A linha "loading=lazy" foi removida */
         />
       </div>
     </section>
