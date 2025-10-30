@@ -12,8 +12,8 @@ const professionals = [
   },
   {
     name: 'Fernanda Dias Almeida',
-    title: 'MÉDICA | CRM-RS XX.XXX',
-    bio: 'Neurologista RQE xx.xxx. Especialista em Neurologia Pediátrica. Membro da Academia Brasileira de Neurologia (ABN). Mestrado e Doutorado em Ciências da Saúde. Certificação Dr Thiago Castro (CTC). Professora Universitária Titular.',
+    title: 'MÉDICA | CRM-RS 22.385',
+    bio: 'Neurologista RQE 16191. Especialista em Neurologia da Academia Brasileira de Neurologia (ABN). Especialista R4 em Neurologia Pediátrica. Certificada em Neurossonologia pela Academia Brasileira de Neurologia (ABN). Mestrado e Doutorado em Ciências da Saúde. Certificação Dr Thiago Castro (CTC). Professora Universitária Titular.',
     imageUrl: '/images/equipe-placeholder-2.jpg',
   },
   {
