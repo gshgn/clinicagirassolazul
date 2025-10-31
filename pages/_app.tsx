@@ -1,17 +1,17 @@
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
-// MUDANÇA 1: Importamos 'Lora' em vez de 'Playfair_Display'
 import { Lora, Montserrat } from 'next/font/google';
-import '@/styles/globals.css';
+import Modal from 'react-modal'; 
+import '@/styles/globals.css'; // A linha vital
 
-// MUDANÇA 2: Configuramos a 'Lora'
+Modal.setAppElement('#__next'); 
+
 const lora = Lora({
   subsets: ['latin'],
-  variable: '--font-lora', // Novo nome da variável
-  weight: ['400', '700'], // Pesos para Título e Logo
+  variable: '--font-lora',
+  weight: ['400', '700'],
 });
 
-// A Montserrat continua igual
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
@@ -20,7 +20,6 @@ const montserrat = Montserrat({
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // MUDANÇA 3: Aplicamos a variável '--font-lora'
     <main className={`${lora.variable} ${montserrat.variable}`}>
       <Component {...pageProps} />
       <Analytics />

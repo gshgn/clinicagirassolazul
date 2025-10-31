@@ -2,7 +2,7 @@
   width: 100%;
   padding: 48px 5%;
   background-color: var(--color-primary-blue);
-  border-top: 1px solid rgba(255, 255, 255, 0.2); 
+  /* A linha "border-top" foi removida daqui. */
 }
 
 .sectionTitle {
@@ -14,7 +14,7 @@
   margin-bottom: 64px;
 }
 
-/* 1. O Grid (Mantido em 3 colunas) */
+/* O Grid (3 colunas) */
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr; 
@@ -23,7 +23,6 @@
   margin: 0 auto;
 }
 
-/* 2. O Card (O Design "Premium") */
 .serviceCard {
   background-color: var(--color-white); 
   color: var(--color-text-dark); 
@@ -31,8 +30,6 @@
   overflow: hidden; 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-  /* Adicionado para garantir que os cards tenham a mesma altura */
   display: flex;
   flex-direction: column;
 }
@@ -42,12 +39,9 @@
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
 }
 
-/* --- ESTA É A MUDANÇA (AÇÃO 141.R) --- */
-
 .imageContainer {
   width: 100%;
-  /* MUDANÇA: Imagem "um pouco menor" (de 220px para 180px) */
-  height: 180px; 
+  height: 180px; /* Imagem menor para mais texto */
   position: relative;
   background-color: #f0f0f0;
 }
@@ -60,7 +54,6 @@
 
 .cardContent {
   padding: 24px;
-  /* Adicionado para garantir que o texto cresça */
   flex-grow: 1; 
   display: flex;
   flex-direction: column;
@@ -79,16 +72,9 @@
   font-size: 15px; 
   line-height: 1.6;
   margin-bottom: 24px;
-  
-  /* MUDANÇA: Garante espaço para o botão crescer */
   flex-grow: 1; 
-
-  /* MUDANÇA: Define uma altura MÍNIMA para 3 linhas de texto */
-  /* (15px * 1.6 * 3 linhas = 72px) */
-  min-height: 72px; 
+  min-height: 72px; /* Espaço para 3 linhas */
 }
-
-/* --- FIM DA MUDANÇA --- */
 
 .cardButton {
   font-family: var(--font-sans);
@@ -101,7 +87,6 @@
   border-radius: 5px;
   cursor: pointer;
   transition: opacity 0.2s ease;
-  /* Garante que o botão fique na base do card */
   margin-top: auto; 
   align-self: flex-start;
 }
@@ -124,7 +109,6 @@
   .sectionTitle {
     font-size: 32px;
   }
-  /* No mobile, a imagem pode ser maior */
   .imageContainer {
     height: 220px;
   }
