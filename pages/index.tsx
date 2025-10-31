@@ -1,24 +1,21 @@
 import Head from 'next/head';
-import { useRef, useState } from 'react'; // 1. Importe o useState
+import { useRef, useState } from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Equipe from '@/components/Equipe';
-// ...
+import Servicos from '@/components/Servicos'; // 1. IMPORTE A NOVA SEÇÃO
 
 export default function HomePage() {
-  // --- (Suas variáveis de SEO permanecem as mesmas) ---
+  const [activeSection, setActiveSection] = useState('');
+  const aboutVideoRef = useRef<HTMLVideoElement>(null);
+  const aboutContainerRef = useRef<HTMLDivElement>(null);
+
+  // --- (Suas variáveis de SEO e a função handleHeroCtaClick permanecem) ---
   const siteTitle = "Clínica Girassol Azul | Excelência em Saúde";
   const siteDescription = "Acolhimento e atendimento para neurodivergentes (TEA, TDAH, etc) e bem-estar integral alinhados à saúde de precisão.";
   const siteUrl = "https://www.clinicagirassolazul.com.br";
   const siteImage = "https://www.clinicagirassolazul.com.br/images/social-share.jpg";
-
-  // 2. Crie o "estado" para saber qual seção está ativa
-  const [activeSection, setActiveSection] = useState('');
-
-  // --- (As Refs do vídeo permanecem as mesmas) ---
-  const aboutVideoRef = useRef<HTMLVideoElement>(null);
-  const aboutContainerRef = useRef<HTMLDivElement>(null);
 
   const handleHeroCtaClick = (event: React.MouseEvent) => {
     event.preventDefault(); 
@@ -30,7 +27,7 @@ export default function HomePage() {
     }
     if (aboutVideoRef.current) {
       aboutVideoRef.current.muted = false;
-      aboutVideoRef.current.currentTime = 0;
+      aboutVideoVef.current.currentTime = 0;
       aboutVideoRef.current.play();
     }
   };
@@ -55,11 +52,9 @@ export default function HomePage() {
         <meta name="twitter:image" content={siteImage} />
       </Head>
       
-      {/* 3. Passe o estado ATIVO para o Header */}
       <Header activeSection={activeSection} />
       
       <main>
-        {/* 4. Passe a função SETTER para todas as seções */}
         <Hero 
           onCtaClick={handleHeroCtaClick} 
           setActiveSection={setActiveSection} 
@@ -70,6 +65,10 @@ export default function HomePage() {
           setActiveSection={setActiveSection}
         />
         <Equipe 
+          setActiveSection={setActiveSection}
+        />
+        {/* 2. ADICIONE A NOVA SEÇÃO AQUI */}
+        <Servicos
           setActiveSection={setActiveSection}
         />
       </main>
