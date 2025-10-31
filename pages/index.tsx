@@ -4,14 +4,14 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Equipe from '@/components/Equipe';
-import Servicos from '@/components/Servicos'; // 1. IMPORTE A NOVA SEÇÃO
+import Servicos from '@/components/Servicos';
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState('');
   const aboutVideoRef = useRef<HTMLVideoElement>(null);
   const aboutContainerRef = useRef<HTMLDivElement>(null);
 
-  // --- (Suas variáveis de SEO e a função handleHeroCtaClick permanecem) ---
+  // --- (Suas variáveis de SEO permanecem) ---
   const siteTitle = "Clínica Girassol Azul | Excelência em Saúde";
   const siteDescription = "Acolhimento e atendimento para neurodivergentes (TEA, TDAH, etc) e bem-estar integral alinhados à saúde de precisão.";
   const siteUrl = "https://www.clinicagirassolazul.com.br";
@@ -27,7 +27,8 @@ export default function HomePage() {
     }
     if (aboutVideoRef.current) {
       aboutVideoRef.current.muted = false;
-      aboutVideoVef.current.currentTime = 0;
+      // --- ESTA É A CORREÇÃO (linha 30) ---
+      aboutVideoRef.current.currentTime = 0; // Era 'aboutVideoVef'
       aboutVideoRef.current.play();
     }
   };
@@ -67,7 +68,6 @@ export default function HomePage() {
         <Equipe 
           setActiveSection={setActiveSection}
         />
-        {/* 2. ADICIONE A NOVA SEÇÃO AQUI */}
         <Servicos
           setActiveSection={setActiveSection}
         />
