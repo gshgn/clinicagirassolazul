@@ -1,0 +1,107 @@
+/* --- ESTA É A MUDANÇA (Ação 147) --- */
+.footer {
+  background-color: var(--color-white);
+  color: var(--color-primary-blue);
+  width: 100%;
+  padding: 24px 5%; /* MUDANÇA: De 32px para 24px */
+}
+/* --- FIM DA MUDANÇA --- */
+
+.footerContainer {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* O grid 3x1 (Ação 145, Rev 6) */
+  gap: 32px;
+  align-items: flex-start;
+}
+
+/* Coluna 1: Marca */
+.brandColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary-blue);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.footerLogo:hover {
+  opacity: 0.8;
+}
+.logoIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.copyright {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Coluna 2 (Legal) e 3 (Links) */
+.legalColumn,
+.linksColumn {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.columnTitle {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-primary-blue);
+  margin-bottom: 12px;
+}
+
+.infoText {
+  margin-bottom: 4px; /* O espaçamento "apertado" (Ação 145, Rev 6) */
+}
+.infoText strong {
+  font-weight: 700;
+  color: var(--color-primary-blue);
+}
+
+.legalLinks {
+  /* O <p> que contém os links (Ação 144, Rev 6) */
+}
+.legalLinks a {
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.legalLinks a:hover {
+  color: var(--color-primary-blue);
+  text-decoration: underline;
+}
+.legalLinks span {
+  color: #bbb;
+  margin: 0 4px;
+  font-weight: 500;
+}
+
+.infoTextCnpj {
+  margin-bottom: 4px; /* O espaçamento "apertado" (Ação 145, Rev 6) */
+  font-weight: 500;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

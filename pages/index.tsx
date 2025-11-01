@@ -7,11 +7,10 @@ import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Equipe from '@/components/Equipe';
-import Servicos from '@/components/Servicos';
+import Servicos from '@/components/Servicos'; // <-- A LINHA EM FALTA (RESTAURADA)
 import Noticias from '@/components/Noticias';
 import Contato from '@/components/Contato';
-
-// A importação duplicada de 'globals.css' foi REMOVIDA daqui.
+import Footer from '@/components/Footer';
 
 export default function HomePage() {
   const [activeSection, setActiveSection] = useState('');
@@ -96,6 +95,9 @@ export default function HomePage() {
         />
       </main>
 
+      {/* (O Footer permanece idêntico) */}
+      <Footer />
+
       {/* (O Modal de Serviços permanece idêntico) */}
       <Modal
         isOpen={selectedService !== null}
@@ -108,8 +110,6 @@ export default function HomePage() {
         <button onClick={closeModal} className="closeModalButton">×</button>
         {selectedService?.modalContent}
       </Modal>
-      
-      {/* O Footer entrará aqui */}
     </>
   );
 }
