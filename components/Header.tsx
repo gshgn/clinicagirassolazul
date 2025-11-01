@@ -51,13 +51,14 @@ export default function Header({ activeSection }: HeaderProps) {
             <li className={getLinkClass('servicos')}>
               <Link href="/#servicos">SERVIÇOS</Link>
             </li>
-            <li className={getLinkClass('noticias')}>
-              <Link href="/#noticias">NOTÍCIAS</Link>
+            
+            {/* --- MUDANÇA (Ação 153) --- */}
+            <li className={getLinkClass('artigos')}>
+              <Link href="/#artigos">ARTIGOS</Link>
             </li>
           </ul>
         </nav>
         
-        {/* --- MUDANÇA 1 (Desktop CTA) --- */}
         <Link href="/#agendamento" className={styles.ctaButton}>
           Agende sua consulta
         </Link>
@@ -77,9 +78,11 @@ export default function Header({ activeSection }: HeaderProps) {
               <li><Link href="/#sobre-nos" onClick={closeMenu}>SOBRE NÓS</Link></li>
               <li><Link href="/#equipe" onClick={closeMenu}>EQUIPE</Link></li>
               <li><Link href="/#servicos" onClick={closeMenu}>SERVIÇOS</Link></li>
-              <li><Link href="/#noticias" onClick={closeMenu}>NOTÍCIAS</Link></li>
+              
+              {/* --- MUDANÇA (Ação 153) --- */}
+              <li><Link href="/#artigos" onClick={closeMenu}>ARTIGOS</Link></li>
+              
               <li>
-                {/* --- MUDANÇA 2 (Mobile CTA) --- */}
                 <Link href="/#agendamento" className={styles.mobileCtaButton} onClick={closeMenu}>
                   Agende sua consulta
                 </Link>

@@ -4,7 +4,7 @@ import styles from './Noticias.module.css';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
-// 1. DADOS (Placeholders para a lista 1x5)
+// (O array 'newsItems' permanece o mesmo, Ação 141.R)
 const newsItems = [
   {
     title: 'A Importância da Intervenção Precoce no Autismo',
@@ -38,26 +38,31 @@ const newsItems = [
   },
 ];
 
+
 type NoticiasProps = {
   setActiveSection: (id: string) => void;
 }
 
 export default function Noticias({ setActiveSection }: NoticiasProps) {
+  // MUDANÇA (Ação 154): Limiar do sensor
   const { ref, inView } = useInView({ threshold: 0.1 });
   useEffect(() => {
     if (inView) {
-      setActiveSection('noticias');
+      // MUDANÇA (Ação 154): ID do sensor
+      setActiveSection('artigos'); 
     }
   }, [inView, setActiveSection]);
 
   return (
-    <section id="noticias" ref={ref} className={styles.newsSection}>
-      <h2 className={styles.sectionTitle}>NOTÍCIAS</h2>
+    // MUDANÇA (Ação 154): ID da secção
+    <section id="artigos" ref={ref} className={styles.newsSection}>
+      
+      {/* MUDANÇA (Ação 154): Título da secção */}
+      <h2 className={styles.sectionTitle}>ARTIGOS</h2>
       
       <div className={styles.newsListContainer}>
         {newsItems.map((item, index) => (
           <div key={index} className={styles.newsCard}>
-            {/* Coluna 1: Imagem */}
             <div className={styles.imageContainer}>
               <Image
                 src={item.imageUrl}
@@ -68,11 +73,9 @@ export default function Noticias({ setActiveSection }: NoticiasProps) {
               />
             </div>
             
-            {/* Coluna 2: Conteúdo */}
             <div className={styles.cardContent}>
               <h3 className={styles.cardTitle}>{item.title}</h3>
               <p className={styles.cardSummary}>{item.summary}</p>
-              {/* --- ESTA É A MUDANÇA (Ação 141.R) --- */}
               <button className={styles.cardButton}>
                 Saiba mais
               </button>

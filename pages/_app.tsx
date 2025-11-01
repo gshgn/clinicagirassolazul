@@ -2,10 +2,18 @@ import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { Lora, Montserrat } from 'next/font/google';
 import Modal from 'react-modal'; 
-import '@/styles/globals.css'; // A linha vital
+
+// 1. IMPORTE O CSS BASE DO SWIPER
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+// 'swiper/css/effect-coverflow'; // <-- A LINHA FOI REMOVIDA
+
+import '@/styles/globals.css'; 
 
 Modal.setAppElement('#__next'); 
 
+// (As suas fontes permanecem as mesmas)
 const lora = Lora({
   subsets: ['latin'],
   variable: '--font-lora',

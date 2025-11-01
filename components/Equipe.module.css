@@ -1,7 +1,8 @@
 .equipeSection {
   width: 100%;
-  padding: 48px 5%; /* MUDANÇA: De 80px para 48px */
+  padding: 48px 0;
   background-color: var(--color-primary-blue);
+  /* A linha "border-top" foi REMOVIDA daqui. */
 }
 
 .sectionTitle {
@@ -12,74 +13,109 @@
   text-align: center;
   margin-bottom: 64px;
 }
-/* ... (o restante do arquivo permanece idêntico) ... */
 
-.teamContainer {
+.carouselContainer {
+  width: 100%;
+  padding-bottom: 50px;
+}
+
+/* A Lógica de Zoom Correta (Ação 186) */
+.slideActive,
+.slideInactive {
+  height: auto;
+  padding: 10px 0;
+  transition: transform 0.5s ease;
+}
+
+.professionalCard {
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  padding: 24px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.professionalBlock {
-  text-align: center;
-  max-width: 600px;
-  width: 100%;
-  margin-bottom: 64px; 
+.slideInactive .professionalCard {
+  transform: scale(0.6); 
 }
+.slideActive .professionalCard {
+  transform: scale(1);
+}
+/* Fim da Lógica de Zoom */
 
+
+/* Conteúdo do Card */
 .imageWrapper {
-  width: 300px;
-  height: 300px;
+  width: 240px; 
+  height: 240px;
   border-radius: 8px;
   overflow: hidden;
   margin: 0 auto 24px auto;
-  background-color: var(--color-text-dark);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background-color: #f0f0f0;
 }
-
 .profileImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-
 .professionalName {
   font-family: var(--font-serif);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-primary-blue);
   margin-bottom: 8px;
 }
-
 .professionalTitle {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--color-accent-gold);
   margin-bottom: 16px;
   text-transform: uppercase;
+  min-height: 30px;
 }
-
 .professionalBio {
   font-family: var(--font-sans);
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 300;
-  line-height: 1.7;
-  color: var(--color-text-light);
+  line-height: 1.6;
+  color: var(--color-text-dark);
+  flex-grow: 1;
 }
 
+/* Estilos do Swiper */
+.carouselContainer {
+  --swiper-navigation-color: var(--color-accent-gold);
+  --swiper-pagination-color: var(--color-accent-gold);
+  --swiper-pagination-bullet-inactive-color: var(--color-white);
+  --swiper-pagination-bullet-inactive-opacity: 0.3;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
   .sectionTitle {
     font-size: 32px;
   }
+  
+  .slideInactive .professionalCard,
+  .slideActive .professionalCard {
+    transform: scale(1); 
+  }
+  
+  .imageWrapper {
+    width: 250px;
+    height: 250px;
+  }
+  
   .professionalName {
     font-size: 24px;
   }
   .professionalBio {
     font-size: 16px;
-  }
-  .imageWrapper {
-    width: 250px;
-    height: 250px;
   }
 }
