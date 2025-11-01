@@ -1,0 +1,123 @@
+.newsSection {
+  width: 100%;
+  padding: 48px 0; /* O padding lateral foi removido (Ação 142.R2) */
+  background-color: var(--color-primary-blue);
+  /* A linha "border-top" foi REMOVIDA daqui. */
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--color-white);
+  text-align: center;
+  margin-bottom: 64px;
+  padding: 0 5%; 
+}
+
+/* O "contentor" de 70% (Ação 142.R2) */
+.newsListContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 70%; 
+  max-width: 1200px; 
+  margin: 0 auto;
+}
+
+.newsCard {
+  background-color: var(--color-white); 
+  color: var(--color-text-dark); 
+  border-radius: 8px; 
+  overflow: hidden; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); 
+  display: flex;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newsCard:hover {
+  transform: translateY(-8px); 
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Coluna 1: A Imagem (1/3) */
+.imageContainer {
+  flex: 0 0 33.333%; 
+  min-width: 200px;
+  background-color: #f0f0f0;
+}
+
+.newsImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* Coluna 2: O Conteúdo (2/3) */
+.cardContent {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-primary-blue); 
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.cardSummary {
+  font-family: var(--font-sans);
+  font-size: 15px; 
+  line-height: 1.7;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.cardButton {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 15px;
+  background-color: var(--color-accent-gold);
+  color: var(--color-primary-blue);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  align-self: flex-start;
+}
+
+.cardButton:hover {
+  opacity: 0.9;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 1024px) {
+  .newsListContainer {
+    width: 90%;
+  }
+}
+@media (max-width: 768px) {
+  .newsListContainer {
+    width: 100%;
+  }
+  .newsSection {
+    padding: 48px 5%; /* Retornamos o padding lateral no mobile */
+  }
+  .newsCard {
+    flex-direction: column;
+  }
+  .imageContainer {
+    flex-basis: auto; 
+    width: 100%;
+    height: 220px;
+  }
+  .cardContent {
+    padding: 24px;
+  }
+}

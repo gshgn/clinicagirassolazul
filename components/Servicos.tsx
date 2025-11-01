@@ -4,16 +4,16 @@ import styles from './Servicos.module.css';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
-// --- 1. DEFINIÇÃO DE TIPO (O que é um "Serviço") ---
-// Agora inclui o 'modalContent'
+// (A definição de tipo 'Service' e o array 'services' 
+// permanecem idênticos aos da Ação 152)
+
 export type Service = {
   title: string;
   description: string;
   imageUrl: string;
-  modalContent: React.ReactNode; // O conteúdo rico para o modal
+  modalContent: React.ReactNode; 
 };
 
-// --- 2. DADOS ATUALIZADOS (com 'modalContent' de exemplo) ---
 const services: Service[] = [
   {
     title: 'Avaliação Neuropsicológica',
@@ -88,10 +88,8 @@ const services: Service[] = [
 ];
 
 
-// 3. Propriedades (Sensor + Função de Clique)
 type ServicosProps = {
   setActiveSection: (id: string) => void;
-  // A função que o "cérebro" nos passa para abrir o modal
   onServiceClick: (service: Service) => void; 
 }
 
@@ -124,12 +122,12 @@ export default function Servicos({ setActiveSection, onServiceClick }: ServicosP
               <h3 className={styles.cardTitle}>{service.title}</h3>
               <p className={styles.cardDescription}>{service.description}</p>
               
-              {/* 4. O BOTÃO AGORA CHAMA A FUNÇÃO onServiceClick */}
+              {/* --- ESTA É A MUDANÇA (Ação 167) --- */}
               <button 
                 className={styles.cardButton}
-                onClick={() => onServiceClick(service)} // <-- A MÁGICA
+                onClick={() => onServiceClick(service)}
               >
-                Saiba Mais
+                Ver detalhes
               </button>
             </div>
           </div>
