@@ -18,7 +18,7 @@
   max-width: 1300px;
   display: flex;
   justify-content: space-between;
-  align-items: center; /* <-- A CORREÇÃO (align-items) */
+  align-items: center;
 }
 
 .logoContainer {
@@ -26,7 +26,7 @@
   align-items: center;
   gap: 12px;
   font-family: var(--font-serif);
-  font-size: 24px;
+  font-size: 24px; /* Tamanho do Desktop */
   font-weight: 700;
   color: var(--color-primary-blue);
   z-index: 1002;
@@ -45,6 +45,7 @@
 .logoText {
   /* (Nada aqui no desktop) */
 }
+
 
 /* Nav de Desktop */
 .nav ul {
@@ -102,7 +103,7 @@
   z-index: 1002;
   padding: 0;
 }
-/* ... (o restante do arquivo .css é idêntico ao da Ação 106) ... */
+/* ... (regras do hambúrguer e painel móvel permanecem idênticas) ... */
 .hamburgerLines {
   position: relative;
   width: 30px;
@@ -192,30 +193,41 @@
   font-weight: 700;
 }
 
+
+/* --- AS REGRAS DE MÍDIA (O "Interruptor") --- */
+
 @media (max-width: 768px) {
+  /* 1. Esconde as coisas do Desktop */
   .nav,
   .ctaButton {
     display: none;
   }
+
+  /* 2. Mostra as coisas do Mobile */
   .hamburgerButton,
   .mobileNavPanel {
     display: block;
   }
+  
+  /* --- ESTA É A NOVA CORREÇÃO (AÇÃO 163) --- */
+  
+  /* 3. Ajusta o Logo para o Mobile */
   .logoContainer {
-    font-size: 20px; 
+    /* MUDANÇA: Tipografia Fluida */
+    /* Mínimo de 16px, Ideal de 5% da largura, Máximo de 20px */
+    font-size: clamp(16px, 5vw, 20px); 
     gap: 8px;
   }
+
   .logoIcon {
     width: 32px;
     height: 32px;
   }
-  .logoText {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
   
-  .nav li.active a::after {
-    display: none;
+  .logoText {
+    white-space: nowrap; /* Impede a quebra de linha */
+    /* Removemos o "overflow: hidden" e "ellipsis"
+       porque o clamp() deve resolver o problema da largura. */
   }
+  /* --- FIM DA CORREÇÃO --- */
 }
