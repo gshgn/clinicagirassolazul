@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import styles from './Header.module.css';
 
-// 1. O Header agora aceita a prop 'activeSection'
+// O tipo aceita a prop 'activeSection' (para o Scrollspy)
 type HeaderProps = {
   activeSection: string;
 }
@@ -14,8 +14,7 @@ export default function Header({ activeSection }: HeaderProps) {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // 2. Função "helper" para verificar se a seção está ativa
-  // (Isso limpa o nosso código JSX)
+  // Função "helper" para o Scrollspy
   const getLinkClass = (id: string) => {
     return activeSection === id ? styles.active : '';
   };
@@ -24,10 +23,9 @@ export default function Header({ activeSection }: HeaderProps) {
     <header className={styles.header}>
       <div className={styles.container}>
         
-        {/* 3. Atualizamos o link para /#inicio (para corresponder ao sensor) */}
         <Link 
           href="/#inicio" 
-          className={styles.logoContainer} // A linha .active não será aplicada ao logo
+          className={styles.logoContainer}
           onClick={closeMenu}
         >
           <Image
@@ -44,7 +42,6 @@ export default function Header({ activeSection }: HeaderProps) {
         
         <nav className={styles.nav}>
           <ul>
-            {/* 4. Aplique a classe ativa em cada 'li' */}
             <li className={getLinkClass('sobre-nos')}>
               <Link href="/#sobre-nos">SOBRE NÓS</Link>
             </li>
@@ -60,11 +57,12 @@ export default function Header({ activeSection }: HeaderProps) {
           </ul>
         </nav>
         
+        {/* --- MUDANÇA 1 (Desktop CTA) --- */}
         <Link href="/#agendamento" className={styles.ctaButton}>
-          Agende uma consulta
+          Agende sua consulta
         </Link>
 
-        {/* --- O menu móvel permanece o mesmo --- */}
+        {/* --- O menu móvel --- */}
         <button 
           className={`${styles.hamburgerButton} ${isMenuOpen ? styles.open : ''}`} 
           onClick={toggleMenu}
@@ -81,8 +79,9 @@ export default function Header({ activeSection }: HeaderProps) {
               <li><Link href="/#servicos" onClick={closeMenu}>SERVIÇOS</Link></li>
               <li><Link href="/#noticias" onClick={closeMenu}>NOTÍCIAS</Link></li>
               <li>
+                {/* --- MUDANÇA 2 (Mobile CTA) --- */}
                 <Link href="/#agendamento" className={styles.mobileCtaButton} onClick={closeMenu}>
-                  Agende uma consulta
+                  Agende sua consulta
                 </Link>
               </li>
             </ul>

@@ -46,14 +46,10 @@ export default function Contato({ setActiveSection }: ContatoProps) {
           <p className={styles.contactInfo}>
             <strong>Telefone/WhatsApp:</strong> (XX) 9XXXX-XXXX
           </p>
-          
-          {/* --- ESTA É A MUDANÇA (Ação 186) --- */}
           <p className={styles.contactInfo}>
             <strong>Endereço:</strong> Rua General Bacelar (Calçadão), Número 378, 
             Sala 303 - Edifício Antares - Bairro Centro, Rio Grande, RS - CEP 96200-370
           </p>
-          {/* --- FIM DA MUDANÇA --- */}
-          
           <p className={styles.contactInfo}>
             <strong>Instagram:</strong> @clinicagirassolazul
           </p>
@@ -61,13 +57,15 @@ export default function Contato({ setActiveSection }: ContatoProps) {
         
         {/* Coluna 2: O Mapa */}
         <div className={styles.mapPanel}>
-          {/* Lembre-se de atualizar este <iframe> com o código do Google Maps */}
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3408.318210196238!2d-52.1691236848545!3d-31.3228809814343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95119a0051e707ef%3A0x633903823460f44!2sRio%20Grande%2C%20RS!5e0!3m2!1spt-BR!2sbr!4v1670000000000!5m2!1spt-BR!2sbr" 
-            width="600" 
-            height="450" 
+          
+          {/* ESTE É O SEU IFRAME (Ação 193)
+            Note que 'width', 'height' e 'style' foram removidos 
+            e 'className' foi adicionado. 
+          */}
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2827.47312426325!2d-52.10026256740094!3d-32.03142354231026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95119d1ae63f5a1d%3A0xb2b5dc7be4ed7418!2sEdificio%20Antares!5e1!3m2!1spt-BR!2sbr!4v1762024750453!5m2!1spt-BR!2sbr" 
             allowFullScreen={true} 
-            loading="lazy"
+            loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
             className={styles.mapFrame}
           ></iframe>

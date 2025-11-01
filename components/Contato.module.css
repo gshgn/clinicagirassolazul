@@ -1,8 +1,7 @@
 .contactSection {
   width: 100%;
-  padding: 48px 5%; /* O padding correto (Ação 182) */
+  padding: 48px 5%;
   background-color: var(--color-primary-blue);
-  border-top: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
 .container {
@@ -26,7 +25,6 @@
   margin-bottom: 16px;
 }
 
-/* O subtexto de "Marketing" permanece a 18px */
 .subTitle {
   font-family: var(--font-sans);
   font-size: 18px;
@@ -56,14 +54,16 @@
   opacity: 0.9;
 }
 
+/* --- ESTA É A MUDANÇA (Ação 201) --- */
 .divider {
   height: 1px;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.2);
-  margin: 40px 0;
+  /* Topo: 20px, Direita/Esquerda: 0, Baixo: 15px */
+  margin: 20px 0 15px 0; 
 }
+/* --- FIM DA MUDANÇA --- */
 
-/* O subtítulo "Nossos contatos" permanece a 28px */
 .contactHeader {
   font-family: var(--font-serif);
   font-size: 28px;
@@ -71,15 +71,13 @@
   margin-bottom: 16px;
 }
 
-/* --- ESTA É A MUDANÇA (Ação 184) --- */
 .contactInfo {
   font-family: var(--font-sans);
-  font-size: 16px; /* MUDANÇA: De 18px de volta para 16px */
+  font-size: 16px;
   line-height: 1.8;
   color: var(--color-text-light);
   font-weight: 300;
 }
-/* --- FIM DA MUDANÇA --- */
 
 .contactInfo strong {
   font-weight: 700;
@@ -117,7 +115,6 @@
   .contactHeader {
     font-size: 24px;
   }
-  /* O mobile já estava a 16px, por isso mantemos */
   .contactInfo {
     font-size: 16px;
   }
