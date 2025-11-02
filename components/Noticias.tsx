@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './Noticias.module.css';
 import { useInView } from 'react-intersection-observer';
-import { useEffect } from 'react';
-import { getAllArticles } from '@/lib/articles'; // Importamos os dados
+import { getAllArticles } from '@/lib/articles';
 
-// 1. O tipo 'Article' e 'onArticleClick' foram REMOVIDOS
-// (Este componente já não precisa de saber sobre Modals)
+import type { Article } from '@/lib/articles';
+
+
 type NoticiasProps = {
   setActiveSection: (id: string) => void;
 }
 
-const newsItems = getAllArticles();
+const newsItems: Article[] = getAllArticles();
+
+const getHierarchyClass = (index: number) => {
+    if (index === 0) return styles.cardLarge;
+    if (index === 1) return styles.cardMedium;
+    if (index === 2) return styles.cardSmall;
+    return ''; 
+};
+
 
 export default function Noticias({ setActiveSection }: NoticiasProps) {
-  // Configuração do Sensor (igual a antes)
   const { ref, inView } = useInView({ threshold: 0.1 });
   useEffect(() => {
     if (inView) {
@@ -26,10 +33,13 @@ export default function Noticias({ setActiveSection }: NoticiasProps) {
   return (
     <section id="artigos" ref={ref} className={styles.newsSection}>
       <h2 className={styles.sectionTitle}>ARTIGOS</h2>
+      <p className={styles.sectionSubtitle}>LEIA OS MAIS RECENTES</p>
       
       <div className={styles.newsListContainer}>
-        {newsItems.map((item, index) => (
-          <div key={index} className={styles.newsCard}>
+        {
+        newsItems.slice(0, 3).map((item, index) => (
+          
+          <div key={index} className={`${styles.newsCard} ${getHierarchyClass(index)}`}> 
             <div className={styles.imageContainer}>
               <Image
                 src={item.imageUrl}
@@ -41,20 +51,43 @@ export default function Noticias({ setActiveSection }: NoticiasProps) {
             </div>
             
             <div className={styles.cardContent}>
+              
+              {/* REMOVEMOS A DATA DO TOPO. O TÍTULO VOLTA A SER O PRIMEIRO ELEMENTO VISÍVEL NO FLUXO. */}
+              
               <h3 className={styles.cardTitle}>{item.title}</h3>
               <p className={styles.cardSummary}>{item.summary}</p>
               
-              {/* O Link (Ação 201) permanece correto */}
-              <Link 
-                href={`/artigos/${item.slug}`}
-                className={styles.cardButton}
-              >
-                Saiba mais
-              </Link>
+              <div className={styles.cardFooter}>
+                {/* 1. ESQUERDA: Botão */}
+                <Link 
+                  href={`/artigos/${item.slug}`}
+                  className={styles.cardButton}
+                >
+                  Saiba mais
+                </Link>
+                
+                {/* 2. CENTRO: Autor */}
+                <span className={styles.cardAuthor}>
+                    De: <strong>{item.author}</strong>
+                </span>
+
+                {/* 3. DIREITA: Data (Ação 288) */}
+                <span className={styles.cardDate}>{item.date}</span>
+              </div>
             </div>
           </div>
         ))}
       </div>
+
+      <div className={styles.repositoryCtaWrapper}>
+        <Link 
+            href="/artigos" 
+            className={styles.repositoryCtaButton}
+        >
+            Veja nossa redação completa de artigos
+        </Link>
+      </div>
+
     </section>
   );
 }

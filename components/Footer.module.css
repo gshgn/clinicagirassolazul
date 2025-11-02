@@ -3,7 +3,6 @@
   width: 100%;
   padding: 24px 5%; /* O padding "curto" */
   transition: background-color 0.3s ease, color 0.3s ease;
-  /* MIN-HEIGHT, MAX-HEIGHT E OVERFLOW FORAM REMOVIDOS */
 }
 
 .footerContainer {
@@ -77,7 +76,7 @@
   font-weight: 500;
 }
 
-/* --- 2. VARIANTE "default" (Branca) --- */
+/* --- 2. VARIANTE "default" (Branca) - PADRÃO HOME PAGE --- */
 .footer {
   background-color: var(--color-white);
   color: var(--color-primary-blue);
@@ -102,25 +101,26 @@
   color: #bbb;
 }
 
-/* --- 3. VARIANTE "inverted" (Azul) --- */
+/* --- 3. VARIANTE "inverted" (Azul) - CORRIGIDA (Ação 294) --- */
 .invertedFooter {
   background-color: var(--color-primary-blue);
   color: var(--color-white);
 }
+/* Altera TODOS os elementos que antes eram #B0C4DE ou #888 para Branco Puro */
 .invertedFooter .footerLogo,
 .invertedFooter .columnTitle,
 .invertedFooter .infoText strong,
-.invertedFooter .legalLinks a:hover {
-  color: var(--color-white);
-}
+.invertedFooter .legalLinks a:hover,
 .invertedFooter .copyright,
 .invertedFooter .legalColumn,
-.invertedFooter .linksColumn,
+.invertedFooter .linksColumn {
+  color: var(--color-white);
+}
 .invertedFooter .legalLinks a {
-  color: #B0C4DE;
+  color: var(--color-white); /* Links de privacidade também brancos */
 }
 .invertedFooter .legalLinks span {
-  color: #888;
+  color: #FFFFFF; /* Separador branco */
 }
 
 /* --- 4. Responsividade --- */
