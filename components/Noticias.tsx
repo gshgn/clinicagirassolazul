@@ -5,14 +5,16 @@ import styles from './Noticias.module.css';
 import { useInView } from 'react-intersection-observer';
 import { getAllArticles } from '@/lib/articles';
 
-import type { Article } from '@/lib/articles';
+// 1. MUDANÇA: Importamos AGORA o tipo ArticleWithSlug
+import type { ArticleWithSlug } from '@/lib/articles';
 
 
 type NoticiasProps = {
   setActiveSection: (id: string) => void;
 }
 
-const newsItems: Article[] = getAllArticles();
+// 2. MUDANÇA: Usamos o tipo ArticleWithSlug para a lista
+const newsItems: ArticleWithSlug[] = getAllArticles();
 
 const getHierarchyClass = (index: number) => {
     if (index === 0) return styles.cardLarge;
@@ -51,27 +53,22 @@ export default function Noticias({ setActiveSection }: NoticiasProps) {
             </div>
             
             <div className={styles.cardContent}>
-              
-              {/* REMOVEMOS A DATA DO TOPO. O TÍTULO VOLTA A SER O PRIMEIRO ELEMENTO VISÍVEL NO FLUXO. */}
-              
               <h3 className={styles.cardTitle}>{item.title}</h3>
               <p className={styles.cardSummary}>{item.summary}</p>
               
               <div className={styles.cardFooter}>
-                {/* 1. ESQUERDA: Botão */}
                 <Link 
-                  href={`/artigos/${item.slug}`}
+                  // 3. A linha de erro AGORA está correta, pois 'item' sabe o que é 'slug'
+                  href={`/artigos/${item.slug}`} 
                   className={styles.cardButton}
                 >
                   Saiba mais
                 </Link>
                 
-                {/* 2. CENTRO: Autor */}
                 <span className={styles.cardAuthor}>
                     De: <strong>{item.author}</strong>
                 </span>
 
-                {/* 3. DIREITA: Data (Ação 288) */}
                 <span className={styles.cardDate}>{item.date}</span>
               </div>
             </div>
