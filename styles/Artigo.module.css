@@ -1,0 +1,56 @@
+.articleBody {
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+  
+  /* MUDANÇA CRUCIAL (Ação 253): 80px (Header) + 40px (Espaçamento) */
+  padding-top: 120px; 
+  
+  padding-bottom: 64px;
+  flex-grow: 1; 
+}
+
+/* O resto do CSS permanece idêntico */
+.contentWrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.articleTitle {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  line-height: 1.2;
+  color: var(--color-primary-blue);
+  margin-bottom: 24px;
+}
+
+.imageContainer {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.articleImage {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.articleContent {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--color-text-dark);
+}
+.articleContent h2 {
+  font-family: var(--font-serif);
+  color: var(--color-primary-blue);
+  font-size: 28px;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+.articleContent p {
+  margin-bottom: 24px;
+  text-align: left;
+}

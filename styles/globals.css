@@ -1,6 +1,28 @@
+/* --- ESTA É A MUDANÇA CRUCIAL (Ação 249) --- */
+html,
+body,
+#__next,
+.app-wrapper { /* O novo contentor do app */
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.app-wrapper {
+    display: flex;
+    flex-direction: column; /* Organiza o Header, Main e Footer numa coluna */
+}
+
+/* O <main> que será usado nas subpáginas */
+main {
+    flex-grow: 1; /* Isto faz o <main> OCUPAR TODO O ESPAÇO e empurrar o Footer */
+}
+
+/* --- FIM DA MUDANÇA CRUCIAL --- */
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 80px; 
 }
 
 :root {
@@ -32,7 +54,7 @@ a {
   text-decoration: none;
 }
 
-/* --- ESTILOS DO MODAL "HIGH TICKET" --- */
+/* --- ESTILOS DO MODAL (Não alterados) --- */
 .ReactModal__Overlay {
   opacity: 0;
   transform: scale(0.95);

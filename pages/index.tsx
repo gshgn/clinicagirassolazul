@@ -2,12 +2,13 @@ import Head from 'next/head';
 import { useRef, useState } from 'react';
 import Modal from 'react-modal';
 import { Service } from '@/components/Servicos';
+// A importação de 'Article' foi removida (Correto)
 
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import About from '@/components/About';
 import Equipe from '@/components/Equipe';
-import Servicos from '@/components/Servicos'; // <-- A LINHA EM FALTA (RESTAURADA)
+import Servicos from '@/components/Servicos';
 import Noticias from '@/components/Noticias';
 import Contato from '@/components/Contato';
 import Footer from '@/components/Footer';
@@ -16,10 +17,14 @@ export default function HomePage() {
   const [activeSection, setActiveSection] = useState('');
   const aboutVideoRef = useRef<HTMLVideoElement>(null);
   const aboutContainerRef = useRef<HTMLDivElement>(null);
+  
+  // O Gestor do Modal de Serviços (Correto)
   const [selectedService, setSelectedService] = useState<Service | null>(null);
-
-  // --- (Função handleHeroCtaClick permanece idêntica) ---
+  const openServiceModal = (service: Service) => setSelectedService(service);
+  const closeServiceModal = () => setSelectedService(null);
+  
   const handleHeroCtaClick = (event: React.MouseEvent) => {
+    // ... (função idêntica)
     event.preventDefault(); 
     if (aboutContainerRef.current) {
       aboutContainerRef.current.scrollIntoView({
@@ -33,14 +38,6 @@ export default function HomePage() {
       aboutVideoRef.current.play();
     }
   };
-  
-  // --- (Funções do Modal permanecem idênticas) ---
-  const openModal = (service: Service) => {
-    setSelectedService(service);
-  };
-  const closeModal = () => {
-    setSelectedService(null);
-  };
 
   // --- (Suas variáveis de SEO permanecem) ---
   const siteTitle = "Clínica Girassol Azul | Excelência em Saúde";
@@ -51,7 +48,7 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        {/* ... (Todas as suas meta tags permanecem iguais) ... */}
+        {/* ... (Tags de SEO) ... */}
         <title>{siteTitle}</title>
         <meta name="description" content={siteDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -68,7 +65,10 @@ export default function HomePage() {
         <meta name="twitter:image" content={siteImage} />
       </Head>
       
-      <Header activeSection={activeSection} />
+      <Header 
+        activeSection={activeSection} 
+        variant="default"
+      />
       
       <main>
         <Hero 
@@ -85,7 +85,7 @@ export default function HomePage() {
         />
         <Servicos
           setActiveSection={setActiveSection}
-          onServiceClick={openModal}
+          onServiceClick={openServiceModal}
         />
         <Noticias
           setActiveSection={setActiveSection}
@@ -95,21 +95,25 @@ export default function HomePage() {
         />
       </main>
 
-      {/* (O Footer permanece idêntico) */}
-      <Footer />
+      <Footer 
+        variant="default"
+      />
 
-      {/* (O Modal de Serviços permanece idêntico) */}
+      {/* Modal 1 (Serviços) */}
       <Modal
         isOpen={selectedService !== null}
-        onRequestClose={closeModal}
+        onRequestClose={closeServiceModal}
         contentLabel="Detalhes do Serviço"
         overlayClassName="ReactModal__Overlay"
         className="ReactModal__Content"
         closeTimeoutMS={300}
       >
-        <button onClick={closeModal} className="closeModalButton">×</button>
+        {/* --- ESTA É A CORREÇÃO (Ação 213) --- */}
+        <button onClick={closeServiceModal} className="closeModalButton">×</button>
         {selectedService?.modalContent}
       </Modal>
+
+      {/* O Modal de Artigos (REMOVIDO) */}
     </>
   );
 }

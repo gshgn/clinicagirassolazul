@@ -3,11 +3,22 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Footer.module.css';
 
-export default function Footer() {
+// O tipo aceita 'variant' (para o "Sanduíche Premium")
+type FooterProps = {
+  variant?: 'default' | 'inverted';
+}
+
+export default function Footer({ variant = 'default' }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
+  // Esta linha aplica o TEMA (Cor)
+  const footerClasses = `${styles.footer} ${variant === 'inverted' ? styles.invertedFooter : ''}`;
+
   return (
-    <footer className={styles.footer}>
+    // 'footerClasses' aplica o TEMA (Cor) e o Padding
+    <footer className={footerClasses}>
+      
+      {/* 'footerContainer' aplica o LAYOUT (o grid 3x1) */}
       <div className={styles.footerContainer}>
         
         {/* Coluna 1: Marca (Esquerda) */}
@@ -22,13 +33,10 @@ export default function Footer() {
             />
             <span>CLÍNICA GIRASSOL AZUL</span>
           </Link>
-          
-          {/* --- ESTA É A MUDANÇA (Ação 149) --- */}
           <p className={styles.copyright}>
             © {currentYear} Girassol Azul Clínica Multiprofissional<br />
             Todos os direitos reservados.
           </p>
-          {/* --- FIM DA MUDANÇA --- */}
         </div>
         
         {/* Coluna 2: Diretores Técnicos (Central) */}

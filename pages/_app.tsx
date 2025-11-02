@@ -2,18 +2,10 @@ import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { Lora, Montserrat } from 'next/font/google';
 import Modal from 'react-modal'; 
-
-// 1. IMPORTE O CSS BASE DO SWIPER
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-// 'swiper/css/effect-coverflow'; // <-- A LINHA FOI REMOVIDA
-
 import '@/styles/globals.css'; 
 
 Modal.setAppElement('#__next'); 
 
-// (As suas fontes permanecem as mesmas)
 const lora = Lora({
   subsets: ['latin'],
   variable: '--font-lora',
@@ -27,10 +19,11 @@ const montserrat = Montserrat({
 });
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  // A classe 'main' foi removida. Vamos deixar o CSS de 'globals.css' controlar o layout.
   return (
-    <main className={`${lora.variable} ${montserrat.variable}`}>
+    <div className={`${lora.variable} ${montserrat.variable} app-wrapper`}>
       <Component {...pageProps} />
       <Analytics />
-    </main>
+    </div>
   );
 }
