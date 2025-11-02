@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { useRef, useState } from 'react';
 import Modal from 'react-modal';
 import { Service } from '@/components/Servicos';
-// A importação de 'Article' foi removida (Correto)
 
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
@@ -48,7 +47,6 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        {/* ... (Tags de SEO) ... */}
         <title>{siteTitle}</title>
         <meta name="description" content={siteDescription} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -108,12 +106,11 @@ export default function HomePage() {
         className="ReactModal__Content"
         closeTimeoutMS={300}
       >
-        {/* --- ESTA É A CORREÇÃO (Ação 213) --- */}
         <button onClick={closeServiceModal} className="closeModalButton">×</button>
         {selectedService?.modalContent}
       </Modal>
 
-      {/* O Modal de Artigos (REMOVIDO) */}
+      {/* O Modal de Artigos foi removido para evitar loops de dependência */}
     </>
   );
 }

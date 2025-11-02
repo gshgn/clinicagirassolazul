@@ -2,6 +2,11 @@ import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
 import { Lora, Montserrat } from 'next/font/google';
 import Modal from 'react-modal'; 
+// --- AS LINHAS RESTAURADAS (Ação 267) ---
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+// ----------------------------------------
 import '@/styles/globals.css'; 
 
 Modal.setAppElement('#__next'); 
@@ -19,7 +24,6 @@ const montserrat = Montserrat({
 });
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-  // A classe 'main' foi removida. Vamos deixar o CSS de 'globals.css' controlar o layout.
   return (
     <div className={`${lora.variable} ${montserrat.variable} app-wrapper`}>
       <Component {...pageProps} />

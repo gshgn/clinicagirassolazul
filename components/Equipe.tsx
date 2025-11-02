@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react'; // 1. IMPORTAMOS O useState
+import React, { useState, useEffect } from 'react'; 
 import Image from 'next/image';
 import styles from './Equipe.module.css';
 import { useInView } from 'react-intersection-observer';
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
-import type { Swiper as SwiperCore } from 'swiper'; // 2. Importamos o "tipo" do Swiper
+import type { Swiper as SwiperCore } from 'swiper';
 
-// (O seu array 'professionals' permanece idêntico ao da Ação 72)
+// 1. DADOS DOS PROFISSIONAIS (Versão Estável)
 const professionals = [
   { name: 'Luciana Baldino Lages', title: 'MÉDICA | CRM-RS 20.146', bio: 'Pediatra RQE 44598. Especialista em Saúde da Família. Especialista em Nutrologia Pediátrica pela Boston College. Certificação Dr Thiago Castro (CTC). Professora Universitária Titular.', imageUrl: '/images/luciana-mini.jpg' },
   { name: 'Fernanda Dias Almeida', title: 'MÉDICA | CRM-RS 22.385', bio: 'Neurologista RQE 16191. Especialista em Neurologia da Academia Brasileira de Neurologia (ABN). R4 em Neurologia Pediátrica. Certificada em Neurossonologia pela Academia Brasileira de Neurologia (ABN). Mestrado e Doutorado em Ciências da Saúde. Certificação Dr Thiago Castro (CTC). Professora Universitária Titular.', imageUrl: '/images/fernanda-mini.jpg' },
@@ -22,7 +21,6 @@ type EquipeProps = {
 }
 
 export default function Equipe({ setActiveSection }: EquipeProps) {
-  // Configuração do Sensor
   const { ref, inView } = useInView({ threshold: 0.1 });
   useEffect(() => {
     if (inView) {
@@ -30,18 +28,12 @@ export default function Equipe({ setActiveSection }: EquipeProps) {
     }
   }, [inView, setActiveSection]);
 
-  // --- ESTA É A CORREÇÃO (Ação 185) ---
-  // 3. Criamos um "estado" para saber o índice do slide ATIVO
+  // Lógica de Estado Manual (Para o Zoom, que estava a funcionar)
   const [activeIndex, setActiveIndex] = useState(0);
-
-  // 4. Esta função é chamada pelo Swiper SEMPRE que o slide muda
   const handleSlideChange = (swiper: SwiperCore) => {
-    // A lógica do 'loop' significa que o índice "real" é o que importa
     setActiveIndex(swiper.realIndex); 
   };
-  // --- FIM DA CORREÇÃO ---
-
-
+  
   return (
     <section id="equipe" ref={ref} className={styles.equipeSection}>
       <h2 className={styles.sectionTitle}>EQUIPE</h2>
@@ -49,13 +41,14 @@ export default function Equipe({ setActiveSection }: EquipeProps) {
       <Swiper
         modules={[Navigation, Pagination, A11y]}
         
-        loop={true} // O seu scroll infinito (360)
-        centeredSlides={true} // O seu slide centralizado
+        /* Configuração Estável que funcionou com o zoom (Ação 179) */
+        loop={true} 
+        centeredSlides={true}
         
         breakpoints={{
           768: {
             slidesPerView: 3,
-            spaceBetween: 0, 
+            spaceBetween: 0,
           },
           0: {
             slidesPerView: 1,
@@ -66,17 +59,15 @@ export default function Equipe({ setActiveSection }: EquipeProps) {
         navigation
         pagination={{ clickable: true }}
         className={styles.carouselContainer}
-
-        // 5. Dizemos ao Swiper para chamar a nossa função quando mudar
         onSlideChange={handleSlideChange} 
       >
         
         {professionals.map((professional, index) => (
-          // 6. Verificamos se o índice DESTE slide é o índice ATIVO
           <SwiperSlide key={index} className={
+            // 2. Lógica de Zoom Manual (que estava a funcionar)
             index === activeIndex 
-              ? styles.slideActive // Se for, aplica a classe ATIVA
-              : styles.slideInactive // Se não for, aplica a classe INATIVA
+              ? styles.slideActive 
+              : styles.slideInactive 
           }>
             <div className={styles.professionalCard}>
               <div className={styles.imageWrapper}>

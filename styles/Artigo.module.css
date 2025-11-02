@@ -1,15 +1,17 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .articleBody {
   background-color: var(--color-white);
   color: var(--color-text-dark);
-  
-  /* MUDANÇA CRUCIAL (Ação 253): 80px (Header) + 40px (Espaçamento) */
   padding-top: 120px; 
-  
   padding-bottom: 64px;
   flex-grow: 1; 
 }
 
-/* O resto do CSS permanece idêntico */
 .contentWrapper {
   max-width: 900px;
   margin: 0 auto;
@@ -23,6 +25,71 @@
   color: var(--color-primary-blue);
   margin-bottom: 24px;
 }
+
+/* --- ESTILOS DO BLOCO DE PARTILHA (Ação 257) --- */
+.shareBlock {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebrar linha no mobile */
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  padding: 16px 0;
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.shareTitle {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin-right: 10px;
+}
+
+.shareButtons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.shareButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary-blue);
+  color: var(--color-white);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.shareButton:hover {
+  background-color: var(--color-accent-gold);
+  color: var(--color-primary-blue);
+  transform: translateY(-2px);
+}
+
+/* Botão de Copiar Link (Ação) */
+.copyButton {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  background: none;
+  border: 1px solid var(--color-border-light);
+  color: var(--color-text-dark);
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.copyButton:hover {
+  background-color: var(--color-border-light);
+}
+/* --- FIM DOS ESTILOS DO BLOCO DE PARTILHA --- */
+
 
 .imageContainer {
   width: 100%;
@@ -53,4 +120,19 @@
 .articleContent p {
   margin-bottom: 24px;
   text-align: left;
+}
+
+/* --- Responsividade (mobile) --- */
+@media (max-width: 768px) {
+  .contentWrapper {
+    width: 90%;
+  }
+  .shareBlock {
+    justify-content: center;
+  }
+  .shareTitle {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
 }
